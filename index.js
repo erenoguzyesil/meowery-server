@@ -2,9 +2,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 
 const app = express();
-const port = 3000;
-
-// require('dotenv').config();
+const port = 3001;
 
 function pickRandomElement(array) {
   let randomIndex = Math.floor(Math.random() * array.length);
@@ -40,12 +38,10 @@ app.get("/", async (request, response) => {
     "&limit=" +
     limit;
 
-  fetch(url).then((response2) => {
-    let gifResults = response2.json().results;
+  fetch(url).then(async (response2) => {
+    let gifResults = (await response2.json()).results;
 
     response.send(pickRandomElement(gifResults).media_formats.gif.url);
-
-    console.log('meow!');
   });
 });
 
