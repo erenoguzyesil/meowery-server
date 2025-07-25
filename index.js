@@ -21,11 +21,11 @@ const gifSearchTerms = [
   "cat love",
 ];
 
-app.get("/", async (request, response) => {
-  const apiKey = process.env.TENOR_API_KEY;
-  const clientKey = "meow";
+const apiKey = process.env.TENOR_API_KEY;
+const clientKey = "meow";
 
-  const limit = Math.floor(Math.random() * 50) + 1;
+app.post("/", async (request, response) => {
+  const gifResultsLimit = Math.floor(Math.random() * 50) + 1;
   const randomSearchTerm = pickRandomElement(gifSearchTerms);
 
   const url =
@@ -36,7 +36,7 @@ app.get("/", async (request, response) => {
     "&client_key" +
     clientKey +
     "&limit=" +
-    limit;
+    gifResultsLimit;
 
   fetch(url).then(async (response2) => {
     let gifResults = (await response2.json()).results;
