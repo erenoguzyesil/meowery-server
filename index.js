@@ -1,4 +1,5 @@
 const express = require("express");
+const { rateLimit } = require("express-rate-limit");
 const fetch = require("node-fetch");
 
 const app = express();
@@ -23,6 +24,16 @@ const gifSearchTerms = [
 
 const apiKey = process.env.TENOR_API_KEY;
 const clientKey = "meow";
+
+const limiter = rateLimit({
+  windowMs: 10 * 1000,
+  limit: 50,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  ipv6Subnet: 56,
+});
+
+app.use(limiter);
 
 app.post("/", async (request, response) => {
   const gifResultsLimit = Math.floor(Math.random() * 50) + 1;
