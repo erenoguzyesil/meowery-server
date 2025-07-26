@@ -27,7 +27,7 @@ const clientKey = "meow";
 
 const limiter = rateLimit({
   windowMs: 10 * 1000,
-  limit: 50,
+  limit: 20,
   standardHeaders: "draft-8",
   legacyHeaders: false,
   ipv6Subnet: 56,
