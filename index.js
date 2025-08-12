@@ -44,7 +44,7 @@ app.post("/", async (request, response) => {
     randomSearchTerm +
     "&key=" +
     apiKey +
-    "&client_key" +
+    "&client_key=" +
     clientKey +
     "&limit=" +
     gifResultsLimit;
